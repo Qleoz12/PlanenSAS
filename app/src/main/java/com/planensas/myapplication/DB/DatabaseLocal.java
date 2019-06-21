@@ -3,13 +3,15 @@ package com.planensas.myapplication.DB;
 import android.content.Context;
 
 import com.planensas.myapplication.DAOs.ClienteDAO;
+import com.planensas.myapplication.Entities.Cliente;
 
+import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-public abstract class DatabaseLocal extends RoomDatabase {
-
-
+@Database(entities = {Cliente.class}, version = 1)
+public abstract class DatabaseLocal extends RoomDatabase
+{
     private static DatabaseLocal instance;
     public abstract ClienteDAO clienteDAO();
 

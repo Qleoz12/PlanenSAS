@@ -18,6 +18,7 @@ public class ClienteViewModel extends AndroidViewModel {
     public ClienteViewModel(@NonNull Application application) {
         super(application);
         repository = new ClienteRepository(application);
+        allClientes=repository.getAllNotes();
     }
 
     public void insert(Cliente Cliente) {
@@ -31,7 +32,6 @@ public class ClienteViewModel extends AndroidViewModel {
     public void delete(Cliente Cliente) {
         repository.delete(Cliente);
     }
-
 
     public LiveData<List<Cliente>> getAllClientes() {
         return allClientes;

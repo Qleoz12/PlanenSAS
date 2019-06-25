@@ -1,5 +1,7 @@
 package com.planensas.myapplication.Activities;
 
+import android.support.v7.util.DiffUtil;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,7 @@ import com.planensas.myapplication.utils.DiffCallbackImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecyclerViewAdapter.ViewHolder>
 {
@@ -22,8 +23,8 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
     private OnItemClickListener listener;
 
 
-    public ClienteRecyclerViewAdapter(List<Cliente> employeeList) {
-        this.mclientes.addAll(employeeList);
+    public ClienteRecyclerViewAdapter() {
+
     }
 
     @Override
@@ -85,7 +86,14 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
             });
         }
     }
+    //
 
+
+    public void setMclientes(List<Cliente> mclientes) {
+        this.mclientes = mclientes;
+    }
+
+    //listeners
     public interface OnItemClickListener {
         void onItemClick(Cliente note);
     }

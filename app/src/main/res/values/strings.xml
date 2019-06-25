@@ -11,6 +11,16 @@
     <string name="password">Password</string>
     <string name="sign_up">Sign up</string>
     <string name="forget_password">Forget Password.?</string>
+    <!--edit-->
+    <string name="EditClient">Edicion de Clientes</string>
+    <string name="name">Nombre</string>
+    <string name="LastName">Apellidos</string>
+    <string name="Address">Direccion</string>
+    <string name="Phone">Celular</string>
+    <string name="Status">Estado</string>
+    <string name="Save">Guardar</string>
+
+
 
 
 </resources>

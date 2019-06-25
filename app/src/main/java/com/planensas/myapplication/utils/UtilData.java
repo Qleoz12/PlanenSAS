@@ -13,4 +13,21 @@ public class UtilData
     public static final int ADD_NOTE_REQUEST = 1;
     public static final int EDIT_NOTE_REQUEST = 2;
 
+    //email
+    private static final String emailPattern = "[a-zA-Z0-9._-]{4,}+@[a-z]{3,}+\\.+[a-z]{2,}";
+    public static boolean validEmail(String email)
+    {
+        if(email.isEmpty() || !email.contains("@"))
+        {
+            return false;
+        }else
+        {
+           return email.trim().matches(emailPattern);
+        }
+    }
+    //userid
+    public static final String Extra_userid ="com.plannen.Extra_userid" ;
+
+
+
 }

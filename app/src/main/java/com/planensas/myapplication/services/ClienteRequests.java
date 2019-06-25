@@ -1,6 +1,7 @@
 package com.planensas.myapplication.services;
 
 import com.planensas.myapplication.Entities.Cliente;
+import com.planensas.myapplication.Entities.Models.Login;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface ClienteRequests
 {
     @GET("customers.php")
     Call<List<Cliente>> getClientes(@Query("userId") int userId);
+
+    @GET("login.php")
+    Call<Login> loginApi(@Query("email") String email,@Query("pass") String password);
 }

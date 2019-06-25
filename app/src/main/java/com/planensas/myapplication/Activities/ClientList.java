@@ -1,17 +1,14 @@
 package com.planensas.myapplication.Activities;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,9 +18,14 @@ import com.planensas.myapplication.R;
 import com.planensas.myapplication.ViewModels.ClienteViewModel;
 import com.planensas.myapplication.services.ClienteRequests;
 import com.planensas.myapplication.services.DataServiceGenerator;
+import com.planensas.myapplication.utils.AppVault;
 import com.planensas.myapplication.utils.UtilData;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ClientList extends AppCompatActivity {
     ClienteViewModel clienteViewModel;
@@ -34,34 +36,34 @@ public class ClientList extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_list);
-        clienteViewModel = ViewModelProviders.of(this).get(ClienteViewModel.class);
-        clienteViewModel.getAllClientes().observe(this, new Observer<List<Cliente>>() {
-            @Override
-            public void onChanged(@Nullable List<Cliente> clientes) {
-                //update RecyclerView
-                Toast.makeText(ClientList.this, "onChanged", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        initViews();
+
         fetch();
 
+    }
+
+
+    public void initViews()
+    {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
-        final ClienteRecyclerViewAdapter adapter = new ClienteRecyclerViewAdapter(clienteViewModel.getAllClientes().getValue());
+        final ClienteRecyclerViewAdapter adapter = new ClienteRecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
 
+        clienteViewModel = ViewModelProviders.of(this).get(ClienteViewModel.class);
+        clienteViewModel.getAllClientes().observe( this, new Observer<List<Cliente>>() {
+            @Override
+            public void onChanged(@Nullable List<Cliente> clientes) {
+                    adapter.setMclientes(clientes);
+            }
+        });
         adapter.setOnItemClickListener(new ClienteRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Cliente cliente) {
                 Intent intent = new Intent(ClientList.this, ClientEdit.class);
                 intent.putExtra(UtilData.EXTRA_ID, cliente.getCustomerId());
-                intent.putExtra(UtilData.EXTRA_NOMBRE, cliente.getNombre());
-                intent.putExtra(UtilData.EXTRA_APELLIDO, cliente.getApellido());
-                intent.putExtra(UtilData.EXTRA_DIRECCION, cliente.getDireccion());
-                intent.putExtra(UtilData.EXTRA_TELEFONO, cliente.getTelefono());
-                intent.putExtra(UtilData.EXTRA_ESTADO, cliente.getEstado());
-
                 startActivityForResult(intent, UtilData.EDIT_NOTE_REQUEST);
             }
         });
@@ -69,10 +71,6 @@ public class ClientList extends AppCompatActivity {
 
 
     private void fetch(){
-
-
-
-
         DataServiceGenerator DataServiceGenerator = new DataServiceGenerator();
         ClienteRequests service = DataServiceGenerator.createService(ClienteRequests.class);
         //get the value 3 of other request
@@ -86,10 +84,12 @@ public class ClientList extends AppCompatActivity {
                     if (response != null){
                         List<Cliente> ClienteModelList = response.body();
                         //check if database has information
-                        int Clientscount=clienteViewModel.getAllClientes().getValue().size();
-                        if(ClienteModelList.size()==Clientscount)
+                        //check if database has information
+                        int Clientscount= ( clienteViewModel.getAllClientes().getValue() == null) ? 0 : clienteViewModel.getAllClientes().getValue().size();
+                        if(Clientscount>0)
                         {
                             Log.v(TAG, "Base de datos actualizada data ["+Clientscount+"] -["+ClienteModelList.size()+"]");
+                            return;
                         }
                         for (int i = 0; i < ClienteModelList.size(); i++)
                         {

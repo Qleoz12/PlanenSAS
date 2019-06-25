@@ -1,15 +1,16 @@
 package com.planensas.myapplication.repositories;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.planensas.myapplication.DAOs.ClienteDAO;
 import com.planensas.myapplication.DB.DatabaseLocal;
 import com.planensas.myapplication.Entities.Cliente;
 
 import java.util.List;
-
-import androidx.lifecycle.LiveData;
+import java.util.concurrent.ExecutionException;
 
 public class ClienteRepository
 {
@@ -36,7 +37,19 @@ public class ClienteRepository
         new DeleteNoteAsyncTask(clienteDAO).execute(note);
     }
 
-    public LiveData<List<Cliente>> getAllNotes() {
+    public LiveData<Cliente> getCliente(int id) {
+        try {
+            return new getClienteAsyncTask(clienteDAO).execute(id).get() ;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.v(this.getClass().getName(),"Error en el metodo getCliente");
+        return null;
+    }
+
+    public LiveData<List<Cliente>> getAllClientes() {
         return allClientes;
     }
 
@@ -79,6 +92,20 @@ public class ClienteRepository
         protected Void doInBackground(Cliente... notes) {
             clienteDAO.delete(notes[0]);
             return null;
+        }
+    }
+
+
+    private static class getClienteAsyncTask extends AsyncTask<Integer, Void, LiveData<Cliente>> {
+        private ClienteDAO clienteDAO;
+
+        private getClienteAsyncTask(ClienteDAO clienteDAO) {
+            this.clienteDAO = clienteDAO;
+        }
+
+        @Override
+        protected LiveData<Cliente> doInBackground(Integer... integers) {
+            return clienteDAO.getCliente(integers[0]);
         }
     }
 

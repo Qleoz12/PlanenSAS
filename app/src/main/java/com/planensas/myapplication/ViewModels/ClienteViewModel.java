@@ -1,24 +1,26 @@
 package com.planensas.myapplication.ViewModels;
 
 import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
+import android.support.annotation.NonNull;
 
 import com.planensas.myapplication.Entities.Cliente;
 import com.planensas.myapplication.repositories.ClienteRepository;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
+
 
 public class ClienteViewModel extends AndroidViewModel {
     private ClienteRepository repository;
     private LiveData<List<Cliente>> allClientes;
+    private Cliente curreCliente;
 
     public ClienteViewModel(@NonNull Application application) {
         super(application);
         repository = new ClienteRepository(application);
-        allClientes=repository.getAllNotes();
+        this.allClientes=repository.getAllClientes();
     }
 
     public void insert(Cliente Cliente) {
@@ -33,7 +35,16 @@ public class ClienteViewModel extends AndroidViewModel {
         repository.delete(Cliente);
     }
 
+    public LiveData<Cliente> getCliente(int CustumerId) {return repository.getCliente(CustumerId);}
     public LiveData<List<Cliente>> getAllClientes() {
         return allClientes;
+    }
+
+    public Cliente getCurreCliente() {
+        return curreCliente;
+    }
+
+    public void setCurreCliente(Cliente curreCliente) {
+        this.curreCliente = curreCliente;
     }
 }

@@ -1,11 +1,12 @@
 package com.planensas.myapplication.Entities;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 
 @Entity(tableName = "cliente_table")
-public class Cliente{
+public class Cliente {
 
     @PrimaryKey
     @NonNull
@@ -19,7 +20,8 @@ public class Cliente{
     @NonNull
     private String estado;
 
-    public Cliente(int customerId, String nombre, String apellido, String direccion, String telefono, String estado) {
+    public Cliente(int customerId, String nombre, String apellido, String direccion, String telefono, String estado)
+    {
         this.customerId = customerId;
         this.nombre = nombre;
         this.apellido = apellido;

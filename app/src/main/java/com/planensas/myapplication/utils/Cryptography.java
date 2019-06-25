@@ -8,6 +8,7 @@ import android.security.KeyPairGeneratorSpec;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -42,7 +43,6 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
-import androidx.annotation.RequiresApi;
 
 /*
 MIT License: https://opensource.org/licenses/MIT
@@ -251,7 +251,8 @@ public class Cryptography {
         }
 
         Cipher cipher;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
             cipher = Cipher.getInstance(AES_MODE_M_OR_GREATER);
             cipher.init(Cipher.ENCRYPT_MODE, getSecretKeyAPIMorGreater(),
                     new GCMParameterSpec(128, FIXED_IV));

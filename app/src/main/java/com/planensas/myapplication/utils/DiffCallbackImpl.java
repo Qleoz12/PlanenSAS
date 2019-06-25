@@ -1,11 +1,12 @@
 package com.planensas.myapplication.utils;
 
+import android.support.annotation.Nullable;
+import android.support.v7.util.DiffUtil;
+
 import com.planensas.myapplication.Entities.Cliente;
 
 import java.util.List;
 
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DiffUtil;
 
 public class DiffCallbackImpl extends DiffUtil.Callback{
 

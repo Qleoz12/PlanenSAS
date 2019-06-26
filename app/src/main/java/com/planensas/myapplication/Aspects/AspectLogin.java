@@ -1,11 +1,13 @@
 package com.planensas.myapplication.Aspects;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.planensas.myapplication.Activities.ClientList;
 import com.planensas.myapplication.MainActivity;
 import com.planensas.myapplication.utils.AppVault;
 
@@ -18,7 +20,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 @Aspect
 public class AspectLogin
 {
-
+    private static String tag="AspectJ>>>>";
     @Pointcut("execution(* onCreate(android.os.Bundle))")
     public void onCreate(){}
 
@@ -48,23 +50,32 @@ public class AspectLogin
                 AppVault v= new AppVault(activity);
                 Log.v("estado-login>>>>",""+v.getLogin());
                 //Activities no check login
-                if(className.equals("MainActivity"))
+                if(className.equals("MainActivity") && !v.getLogin())
                 {
-                    Log.v("AspectJ>>>>","Do nothing");
+                    Log.v(tag,"Do nothing");
+                }
+                else if(!className.equals("MainActivity") && v.getLogin())
+                {
+                   Log.v(tag,"logged over->"+className);
+                }
+                else if(className.equals("MainActivity") && v.getLogin())
+                {
+                    Log.v(tag,"Already Login");
+                   Intent intent = new Intent(activity, ClientList.class);
+                   activity.startActivity(intent);
+                }
+                else if(!className.equals("MainActivity") && !v.getLogin())
+                {
+                    Log.v(tag,"NOT Login");
+                    Intent intent = new Intent(activity, Activity.class);
+                    activity.startActivity(intent);
                 }
                 else
                 {
-                    if(!v.getLogin())
-                    {
-                        Log.v("AspectJ>>>>","no login go back");
-                        Intent intent = new Intent(activity, MainActivity.class);
-                        activity.startActivity(intent);
-                    }
-                    else
-                    {
-                        Log.v("AspectJ>>>>","logged over->"+className);
-                    }
+                    Intent intent = new Intent(activity, Activity.class);
+                    activity.startActivity(intent);
                 }
+
             }catch (Exception e)
             {
                 e.printStackTrace();

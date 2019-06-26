@@ -27,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ClientList extends AppCompatActivity {
+public class ClientList extends BaseActivity{
     ClienteViewModel clienteViewModel;
     private static final String TAG = "ClientList-Activity";
 
@@ -35,7 +35,6 @@ public class ClientList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_list);
 
         initViews();
 
@@ -43,6 +42,9 @@ public class ClientList extends AppCompatActivity {
 
     }
 
+    public int getLayoutId() {
+        return R.layout.activity_client_list;
+    }
 
     public void initViews()
     {

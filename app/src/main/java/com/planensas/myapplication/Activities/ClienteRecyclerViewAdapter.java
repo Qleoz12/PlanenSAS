@@ -1,5 +1,6 @@
 package com.planensas.myapplication.Activities;
 
+import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,13 +27,12 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
     public ClienteRecyclerViewAdapter() {
 
     }
-
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View view = inflater.inflate(R.layout.cliente_item, parent, false);
-        return new ViewHolder(view);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cliente_item, parent, false);
+        return new ViewHolder(itemView);
     }
 
     @Override
@@ -70,10 +70,10 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
 
         public ViewHolder(View itemView) {
             super(itemView);
-            nombre = (TextView) itemView.findViewById(R.id.text_name);
-            apellidos = (TextView) itemView.findViewById(R.id.text_lastname);
-            address = (TextView) itemView.findViewById(R.id.text_address);
-            phone = (TextView) itemView.findViewById(R.id.text_phone);
+            nombre =    itemView.findViewById(R.id.text_name);
+            apellidos = itemView.findViewById(R.id.text_lastname);
+            address =   itemView.findViewById(R.id.text_address);
+            phone =     itemView.findViewById(R.id.text_phone);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,7 +90,9 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
 
 
     public void setMclientes(List<Cliente> mclientes) {
+
         this.mclientes = mclientes;
+        notifyDataSetChanged();
     }
 
     //listeners

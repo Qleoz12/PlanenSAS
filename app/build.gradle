@@ -73,8 +73,7 @@ dependencies {
     implementation("com.mikepenz:materialdrawer:6.0.9@aar") {
         transitive = true
     }
-    //icons
-    implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
+
 
     //test
     testImplementation 'junit:junit:4.12'

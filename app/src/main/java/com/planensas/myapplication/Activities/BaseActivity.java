@@ -16,6 +16,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.planensas.myapplication.R;
+import com.planensas.myapplication.utils.AppVault;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,8 +37,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
        //drawable menu
         //if you want to update the items at a later time it is recommended to keep it in a variable
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("home");
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Settings");
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem()
+                                        .withIdentifier(1)
+                                        .withName(R.string.LisClient)
+                                        .withIcon(R.)    ;
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName((R.string.About));
 
 
         // Create the AccountHeader
@@ -46,7 +50,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.gradientlogin)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.mipmap.ic_launcher))
+                        new ProfileDrawerItem()
+                                .withName("User Demo")
+                                .withEmail(new AppVault(getBaseContext()).getUser())
+                                .withIcon(getResources().getDrawable(R.mipmap.ic_logo_gray_plannensas))
                 ).build();
         //create the drawer and remember the `Drawer` result object
         result = new DrawerBuilder()
@@ -56,8 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .addDrawerItems(
                         item1,
                         new DividerDrawerItem(),
-                        item2,
-                        new SecondaryDrawerItem().withName("settings 222")
+                        item2
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override

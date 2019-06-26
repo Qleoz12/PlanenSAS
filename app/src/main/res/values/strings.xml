@@ -11,6 +11,8 @@
     <string name="password">Password</string>
     <string name="sign_up">Sign up</string>
     <string name="forget_password">Forget Password.?</string>
+    <!--list-->
+    <string name="LisClient">Lista de Clientes</string>
     <!--edit-->
     <string name="EditClient">Edicion de Clientes</string>
     <string name="name">Nombre</string>
@@ -19,6 +21,8 @@
     <string name="Phone">Celular</string>
     <string name="Status">Estado</string>
     <string name="Save">Guardar</string>
+    <!--About-->
+    <string name="About">Acerca del Desarrollador</string>
 
     <!--menu -->
     <string name="action_settings">algooo</string>

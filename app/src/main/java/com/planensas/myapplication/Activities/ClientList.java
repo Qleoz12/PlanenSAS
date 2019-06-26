@@ -66,7 +66,7 @@ public class ClientList extends BaseActivity{
             public void onItemClick(Cliente cliente) {
                 Intent intent = new Intent(ClientList.this, ClientEdit.class);
                 intent.putExtra(UtilData.EXTRA_ID, cliente.getCustomerId());
-                startActivityForResult(intent, UtilData.EDIT_NOTE_REQUEST);
+                startActivity(intent);
             }
         });
     }

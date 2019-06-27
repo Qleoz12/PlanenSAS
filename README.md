@@ -32,6 +32,7 @@ la app is built based on the next nice libraries.
  - develop Testing code
  - migrate all dependecies to AndroidX
  - generate version based on kotlin
+ - improve App reciclerview using Diffutil https://medium.com/@iammert/using-diffutil-in-android-recyclerview-bdca8e4fbb00
 
 License
 ----

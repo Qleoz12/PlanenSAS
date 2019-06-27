@@ -67,7 +67,7 @@ public class AspectLogin
                 else if(!className.equals("MainActivity") && !v.getLogin())
                 {
                     Log.v(tag,"NOT Login");
-                    Intent intent = new Intent(activity, Activity.class);
+                    Intent intent = new Intent(activity, MainActivity.class);
                     activity.startActivity(intent);
                 }
                 else

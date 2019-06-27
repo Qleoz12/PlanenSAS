@@ -198,6 +198,26 @@ public class AppVault
         }
     }
 
+    public Boolean logout()
+    {
+        //clean shield
+        try {
+            shield.removeKeys();
+            SharedPreferences preferences = mContext.getSharedPreferences(SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+            preferences.edit().clear().commit();
+            return true;
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private static String encrypt(String input) {
         // This is base64 encoding, which is not an encryption
         return Base64.encodeToString(input.getBytes(), Base64.DEFAULT);

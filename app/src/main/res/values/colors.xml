@@ -7,4 +7,10 @@
     <color name="colorSplashText">#F0F0F0</color>
     <color name="colorProgressBar">#FFCE511C</color>
     <color name="colorTextView">#83898E</color>
+    <!-- colors States-->
+     <color name="statePending">#ff4949</color>
+    <color name="stateApproved">#94fc13</color>
+    <color name="stateAccepted">#94fc13</color>
+    <color name="stateRejected">#ff4949</color>
+    <color name="stateDisabled">#33313b</color>
 </resources>

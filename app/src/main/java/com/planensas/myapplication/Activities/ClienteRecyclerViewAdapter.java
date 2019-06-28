@@ -1,6 +1,7 @@
 package com.planensas.myapplication.Activities;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
@@ -29,6 +30,8 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
 
     private List<Cliente> mclientes = new ArrayList<>();
     private OnItemClickListener listener;
+    private OnItemClickListener listenerDelete;
+
     //update with dagger
     private Context context;
 
@@ -55,6 +58,7 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
         holder.address.setText(cliente.getDireccion());
         holder.phone.setText(cliente.getTelefono());
         holder.ImageView.setImageDrawable(setEstado(Integer.parseInt(cliente.getEstado())));
+        holder.imageDelete.setImageDrawable(new IconDrawable( context,FontAwesomeIcons.fa_trash_o).colorRes(R.color.md_red_A200));
 
     }
 
@@ -81,6 +85,7 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
         private final TextView address;
         private final TextView phone;
         private final ImageView ImageView;
+        private final ImageView imageDelete;
 
 
         public ViewHolder(View itemView) {
@@ -90,6 +95,7 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
             address =   itemView.findViewById(R.id.text_address);
             phone =     itemView.findViewById(R.id.text_phone);
             ImageView=  itemView.findViewById(R.id.imageStatus);
+            imageDelete=itemView.findViewById(R.id.imageDelete);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,6 +103,16 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(mclientes.get(position));
+                    }
+                }
+            });
+
+            imageDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listenerDelete != null && position != RecyclerView.NO_POSITION) {
+                        listenerDelete.onItemClick(mclientes.get(position));
                     }
                 }
             });
@@ -120,26 +136,30 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
         this.listener = listener;
     }
 
+    public void setOnDeleteItemClickListener(OnItemClickListener listener) {
+        this.listenerDelete = listener;
+    }
+
     public Drawable setEstado(int  estado) {
 
       switch (estado)
       {
           case 0:
-              return new IconDrawable( context,FontAwesomeIcons.fa_clock_o);
+              return new IconDrawable( context,FontAwesomeIcons.fa_clock_o).colorRes(R.color.statePending);
           case 1:
-              return new IconDrawable( context,FontAwesomeIcons.fa_check);
+              return new IconDrawable( context,FontAwesomeIcons.fa_check).colorRes(R.color.stateApproved);
 
           case 2:
-              return new IconDrawable( context,FontAwesomeIcons.fa_check_circle_o);
+              return new IconDrawable( context,FontAwesomeIcons.fa_check_circle_o).colorRes(R.color.stateAccepted);
 
           case 3:
-              return new IconDrawable( context,FontAwesomeIcons.fa_flag);
+              return new IconDrawable( context,FontAwesomeIcons.fa_flag).colorRes(R.color.stateRejected);
 
           case 4:
-              return new IconDrawable( context,FontAwesomeIcons.fa_share);
+              return new IconDrawable( context,FontAwesomeIcons.fa_share).colorRes(R.color.stateDisabled);
               default:
       }
-        return  new IconDrawable( context,FontAwesomeIcons.fa_ban);
+        return  new IconDrawable( context,FontAwesomeIcons.fa_ban).colorRes(R.color.stateRejected);
     }
 }
 

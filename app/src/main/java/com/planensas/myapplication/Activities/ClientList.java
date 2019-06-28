@@ -69,6 +69,13 @@ public class ClientList extends BaseActivity{
                 startActivity(intent);
             }
         });
+
+        adapter.setOnDeleteItemClickListener(new ClienteRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Cliente cliente) {
+                Toast.makeText(ClientList.this,"borrando "+cliente.getNombre(),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 

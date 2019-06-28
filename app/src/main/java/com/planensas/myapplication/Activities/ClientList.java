@@ -107,7 +107,7 @@ public class ClientList extends BaseActivity{
                             String apellido= ClienteModelList.get(i).getApellido();
                             String direccion= ClienteModelList.get(i).getDireccion();
                             String telefono= ClienteModelList.get(i).getTelefono();
-                            String estado= ClienteModelList.get(i).getEstado();
+                            int estado= ClienteModelList.get(i).getEstado();
                             Log.v(TAG, "recuperado: "+nombre+"-"+apellido+"-"+direccion+"-"+telefono+"**"+estado);
                             Cliente cliente = new Cliente(custumerID,nombre,apellido,direccion,telefono,estado);
                             clienteViewModel.insert(cliente);

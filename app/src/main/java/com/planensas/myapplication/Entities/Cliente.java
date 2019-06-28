@@ -18,9 +18,9 @@ public class Cliente {
     private String direccion;
     private String telefono;
     @NonNull
-    private String estado;
+    private int estado;
 
-    public Cliente(int customerId, String nombre, String apellido, String direccion, String telefono, String estado)
+    public Cliente(int customerId, String nombre, String apellido, String direccion, String telefono, int estado)
     {
         this.customerId = customerId;
         this.nombre = nombre;
@@ -74,11 +74,11 @@ public class Cliente {
     }
 
     @NonNull
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(@NonNull String estado) {
+    public void setEstado(@NonNull int estado) {
         this.estado = estado;
     }
 }

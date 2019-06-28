@@ -217,58 +217,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void fetch()
-    {
-        DataServiceGenerator DataServiceGenerator = new DataServiceGenerator();
-        ClienteRequests service = DataServiceGenerator.createService(ClienteRequests.class);
-        //get the value of other request
-        Call<List<Cliente>> call = service.getClientes(3);
-
-        call.enqueue(new Callback<List<Cliente>>() {
-
-            @Override
-            public void onResponse(Call<List<Cliente>> call, Response<List<Cliente>> response) {
-                if (response.isSuccessful())
-                {
-                    if (response != null){
-                        List<Cliente> ClienteModelList = response.body();
-                        //check if database has information
-                        int Clientscount= ( clienteViewModel.getAllClientes().getValue() == null) ? 0 : clienteViewModel.getAllClientes().getValue().size();
-                        if(Clientscount>0)
-                        {
-                            Log.v(TAG, "Base de datos actualizada data ["+Clientscount+"] -["+ClienteModelList.size()+"]");
-                            fisrtStateAnimation();
-                            return;
-                        }
-                        for (int i = 0; i < ClienteModelList.size(); i++)
-                        {
-                            int custumerID = ClienteModelList.get(i).getCustomerId();
-                            String nombre= ClienteModelList.get(i).getNombre();
-                            String apellido= ClienteModelList.get(i).getApellido();
-                            String direccion= ClienteModelList.get(i).getDireccion();
-                            String telefono= ClienteModelList.get(i).getTelefono();
-                            String estado= ClienteModelList.get(i).getEstado();
-                            Log.v(TAG, "recuperado"+nombre+"-"+apellido+"-"+direccion+"-"+telefono);
-                            Cliente cliente = new Cliente(custumerID,nombre,apellido,direccion,telefono,estado);
-                            clienteViewModel.insert(cliente);
-                        }
-                    }//end for
-                }
-
-                fisrtStateAnimation();
-            }
-
-            @Override
-            public void onFailure(Call<List<Cliente>> call, Throwable t) {
-                Log.v(TAG, t.getMessage());
-                fisrtStateAnimation();
-            }
-
-
-        });
-    }
-
-
-
 
 }

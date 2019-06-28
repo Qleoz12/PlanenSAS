@@ -57,7 +57,7 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
         holder.apellidos.setText(cliente.getApellido());
         holder.address.setText(cliente.getDireccion());
         holder.phone.setText(cliente.getTelefono());
-        holder.ImageView.setImageDrawable(setEstado(Integer.parseInt(cliente.getEstado())));
+        holder.ImageView.setImageDrawable(setEstado(cliente.getEstado()));
         holder.imageDelete.setImageDrawable(new IconDrawable( context,FontAwesomeIcons.fa_trash_o).colorRes(R.color.md_red_A200));
 
     }

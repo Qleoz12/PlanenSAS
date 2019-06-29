@@ -12,6 +12,8 @@ import com.planensas.myapplication.MainActivity;
 import com.planensas.myapplication.utils.AppVault;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -24,16 +26,6 @@ public class AspectLogin
     @Pointcut("execution(* onCreate(android.os.Bundle))")
     public void onCreate(){}
 
-    @Pointcut("execution(void *.onClick(..))")
-    public void onButtonClick() {}
-
-    @Before("onButtonClick() && args(view)")
-    public void onClickAdvice(View view) {
-        if (view instanceof TextView) {
-            String text = ((TextView) view).getText().toString();
-
-        }
-    }
 
     @Before("onCreate()")
     public void onCreateAdvice(JoinPoint joinPoint)
@@ -81,6 +73,22 @@ public class AspectLogin
                 e.printStackTrace();
             }
 
+    }
+
+    @Pointcut("execution(* ClientEdit.GuardarClienteEdit())")
+    public void GuardarClienteEdit(){}
+
+    @Around("GuardarClienteEdit()")
+    public void onGuardarClienteEdit(ProceedingJoinPoint joinPoint)
+    {
+        Log.v("ejecutando","s "+joinPoint.getClass().getName());
+        try
+        {
+            Object result = joinPoint.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        Log.v("EEEEEEEEEY","ZZZZZZZZZZZZZZZZZZZZZZ ");
     }
 
 }

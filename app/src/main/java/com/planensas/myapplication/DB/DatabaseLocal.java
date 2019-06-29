@@ -10,17 +10,19 @@ import android.support.annotation.NonNull;
 
 import com.planensas.myapplication.DAOs.ClienteDAO;
 import com.planensas.myapplication.DAOs.EstadosDAO;
+import com.planensas.myapplication.DAOs.LogsDAO;
 import com.planensas.myapplication.Entities.Cliente;
 import com.planensas.myapplication.Entities.Estado;
+import com.planensas.myapplication.Entities.LogData;
 
 
-
-@Database(entities = {Cliente.class,Estado.class}, version = 2)
+@Database(entities = {Cliente.class,Estado.class, LogData.class}, version = 2)
 public abstract class DatabaseLocal extends RoomDatabase
 {
     private static DatabaseLocal instance;
     public abstract ClienteDAO clienteDAO();
     public abstract EstadosDAO estadosDAO();
+    public abstract LogsDAO logsDAO();
 
     public static synchronized DatabaseLocal getInstance(Context context)
     {

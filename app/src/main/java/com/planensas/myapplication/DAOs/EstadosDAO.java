@@ -13,8 +13,6 @@ import java.util.List;
 @Dao
 public interface EstadosDAO
 {
-
-
         @Insert
         void insert(Estado estado);
 

@@ -1,6 +1,7 @@
 package com.planensas.myapplication.Activities;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,7 +44,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         //iconns
         Iconify.with(new FontAwesomeModule());
-
+        toolbar.setTitle(R.string.app_name);
+        toolbar.setBackground(new ColorDrawable(getResources().getColor(R.color.appColor)));
        //drawable menu
         //if you want to update the items at a later time it is recommended to keep it in a variable
         PrimaryDrawerItem item1 = new PrimaryDrawerItem()

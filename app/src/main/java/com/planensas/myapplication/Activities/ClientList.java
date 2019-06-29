@@ -13,9 +13,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.planensas.myapplication.Entities.Cliente;
+import com.planensas.myapplication.Entities.Estado;
 import com.planensas.myapplication.MainActivity;
 import com.planensas.myapplication.R;
 import com.planensas.myapplication.ViewModels.ClienteViewModel;
+import com.planensas.myapplication.ViewModels.EstadosViewModel;
 import com.planensas.myapplication.services.ClienteRequests;
 import com.planensas.myapplication.services.DataServiceGenerator;
 import com.planensas.myapplication.utils.AppVault;
@@ -29,6 +31,7 @@ import retrofit2.Response;
 
 public class ClientList extends BaseActivity{
     ClienteViewModel clienteViewModel;
+    EstadosViewModel estadosViewModel;
     private static final String TAG = "ClientList-Activity";
 
     @Override
@@ -55,12 +58,14 @@ public class ClientList extends BaseActivity{
         recyclerView.setAdapter(adapter);
 
         clienteViewModel = ViewModelProviders.of(this).get(ClienteViewModel.class);
+        estadosViewModel = ViewModelProviders.of(this).get(EstadosViewModel.class);
         clienteViewModel.getAllClientes().observe( this, new Observer<List<Cliente>>() {
             @Override
             public void onChanged(@Nullable List<Cliente> clientes) {
                     adapter.setMclientes(clientes);
             }
         });
+
         adapter.setOnItemClickListener(new ClienteRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Cliente cliente) {
@@ -73,7 +78,20 @@ public class ClientList extends BaseActivity{
         adapter.setOnDeleteItemClickListener(new ClienteRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Cliente cliente) {
-                Toast.makeText(ClientList.this,"borrando "+cliente.getNombre(),Toast.LENGTH_LONG).show();
+                clienteViewModel.delete(cliente);
+            }
+        });
+
+        adapter.setOnStatusItemClickListener(new ClienteRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Cliente cliente) {
+                estadosViewModel.getEstado(cliente.getEstado()).observe( ClientList.this, new Observer<Estado>() {
+
+                    @Override
+                    public void onChanged(@Nullable Estado estado) {
+                        Toast.makeText(ClientList.this,"estado: "+estado.getEstado(),Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

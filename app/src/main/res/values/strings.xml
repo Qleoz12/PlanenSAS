@@ -21,6 +21,12 @@
     <string name="Phone">Celular</string>
     <string name="Status">Estado</string>
     <string name="Save">Guardar</string>
+
+    <!-- Error Edit Form-->
+    <string name="ErrorName">debe digitar un Nombre</string>
+    <string name="ErrorLastName">debe digitar un Apellido</string>
+    <string name="ErrorAdress">debe digitar una Dirrecion</string>
+    <string name="ErrorTelefono">debe digitar un Telefono</string>
     <!--About-->
     <string name="About">Acerca del Desarrollador</string>
 

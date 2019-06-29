@@ -37,7 +37,7 @@ public class EstadoRepository
         new DeleteEstadoAsyncTask(EstadosDAO).execute(estado);
     }
 
-    public LiveData<Estado> getCliente(int id) {
+    public LiveData<Estado> getEstado(int id) {
         try {
             return new getEstadoAsyncTask(EstadosDAO).execute(id).get() ;
         } catch (ExecutionException e) {
@@ -49,7 +49,7 @@ public class EstadoRepository
         return null;
     }
 
-    public LiveData<Estado> getClienteByName(String name) {return EstadosDAO.getestadoByName(name);}
+    public LiveData<Estado> getEstadoByName(String name) {return EstadosDAO.getestadoByName(name);}
 
     public LiveData<List<Estado>> getAllEstados() {
         return allEstados;

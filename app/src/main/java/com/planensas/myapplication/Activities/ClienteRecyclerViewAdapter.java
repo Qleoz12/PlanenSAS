@@ -30,6 +30,7 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
 
     private List<Cliente> mclientes = new ArrayList<>();
     private OnItemClickListener listener;
+    private OnItemClickListener listenerStatus;
     private OnItemClickListener listenerDelete;
 
     //update with dagger
@@ -116,6 +117,16 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
                     }
                 }
             });
+
+            ImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listenerStatus != null && position != RecyclerView.NO_POSITION) {
+                        listenerStatus.onItemClick(mclientes.get(position));
+                    }
+                }
+            });
         }
     }
     //
@@ -129,16 +140,14 @@ public class ClienteRecyclerViewAdapter extends RecyclerView.Adapter<ClienteRecy
 
     //listeners
     public interface OnItemClickListener {
-        void onItemClick(Cliente note);
+        void onItemClick(Cliente cliente);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-
-    public void setOnDeleteItemClickListener(OnItemClickListener listener) {
-        this.listenerDelete = listener;
-    }
+    public void setOnStatusItemClickListener(OnItemClickListener listener) { this.listenerStatus = listener;    }
+    public void setOnDeleteItemClickListener(OnItemClickListener listener) { this.listenerDelete = listener; }
 
     public Drawable setEstado(int  estado) {
 

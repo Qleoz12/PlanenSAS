@@ -8,9 +8,12 @@
     <color name="colorProgressBar">#FFCE511C</color>
     <color name="colorTextView">#83898E</color>
     <!-- colors States-->
+    <color name="appColor">#1b7fbd</color>
+    <!-- colors States-->
     <color name="statePending">#ff4949</color>
-    <color name="stateApproved">#94fc13</color>
-    <color name="stateAccepted">#94fc13</color>
+    <color name="stateApproved">#76a21e</color>
+    <color name="stateAccepted">#76a21e</color>
     <color name="stateRejected">#ff4949</color>
     <color name="stateDisabled">#33313b</color>
+
 </resources>

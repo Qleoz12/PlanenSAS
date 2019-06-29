@@ -73,11 +73,48 @@ public class ClientEdit extends BaseActivity {
         return R.layout.activity_client_edit;
     }
 
+    private Boolean ValidateClienteEdit()
+    {
+        if (name.getText().toString().isEmpty()) {
+            name.setError(getText(R.string.ErrorName));
+            name.requestFocus();
+            return false;
+        }
+
+        if (lastname.getText().toString().isEmpty()) {
+            lastname.setError(getText(R.string.ErrorLastName));
+            lastname.requestFocus();
+            return false;
+        }
+        if (address.getText().toString().isEmpty()) {
+            address.setError(getText(R.string.ErrorAdress));
+            address.requestFocus();
+            return false;
+        }
+        if (phone.getText().toString().isEmpty()) {
+            phone.setError(getText(R.string.ErrorTelefono));
+            phone.requestFocus();
+            return false;
+        }
+        return true;
+    }
     private void GuardarClienteEdit()
     {
-       //*
-        Intent intent = new Intent(ClientEdit.this,ClientList.class);
-        startActivity(intent);
+        if(ValidateClienteEdit())
+        {
+            clienteViewModel.getCurreCliente().setNombre(name.getText().toString());
+            clienteViewModel.getCurreCliente().setApellido(lastname.getText().toString());
+            clienteViewModel.getCurreCliente().setDireccion(address.getText().toString());
+            clienteViewModel.getCurreCliente().setTelefono(phone.getText().toString());
+            clienteViewModel.update(clienteViewModel.getCurreCliente());
+            Intent intent = new Intent(ClientEdit.this,ClientList.class);
+            startActivity(intent);
+        }
+        else
+        {
+
+        }
+
     }
 
     private void setupBindings() {
@@ -107,19 +144,24 @@ public class ClientEdit extends BaseActivity {
             @Override
             public void onChanged(@Nullable List<Estado> estados)
             {
-                for (Estado estado: estados)
+                if(clienteViewModel.getCurreCliente()!=null)
                 {
-                    arrayList.add(estado.getEstado());
-                    if( clienteViewModel.getCurreCliente().getEstado()==estado.getStateId())
+                    for (Estado estado: estados)
                     {
-                        positionspiner=arrayList.indexOf(estado.getEstado());
+                        arrayList.add(estado.getEstado());
+                        if( clienteViewModel.getCurreCliente().getEstado()==estado.getStateId())
+                        {
+                            positionspiner=arrayList.indexOf(estado.getEstado());
+                        }
                     }
+
                 }
+                Log.v("XXXXXXXXXX2","estado   "+clienteViewModel.getCurreCliente().getEstado()+" positionspiner"+positionspiner);
                 adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1 ,arrayList);
                 adapter.notifyDataSetChanged();
-                Log.v("XXXXXXXXXX2","estado   "+clienteViewModel.getCurreCliente().getEstado()+" positionspiner"+positionspiner);
                 spin.setAdapter(adapter);
                 spin.setSelection(positionspiner, false);
+
             }
         });
 
@@ -127,8 +169,17 @@ public class ClientEdit extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                //clienteViewModel.getCurreCliente().setEstado();
-                Log.v("selecionado","--"+estadoViewModel.getClienteByName(arrayList.get(position)).getValue().getStateId());
+                estadoViewModel.getEstadoByName(arrayList.get(position)).observe( ClientEdit.this, new Observer<Estado>() {
+
+                    @Override
+                    public void onChanged(@Nullable Estado estado) {
+                        Log.v("selecionado","--1 "+ clienteViewModel.getCurreCliente().getEstado());
+                        clienteViewModel.getCurreCliente().setEstado(estado.getStateId());
+                        Log.v("selecionado","--2 "+ clienteViewModel.getCurreCliente().getEstado());
+
+                    }
+                });
+
             }
 
             @Override
@@ -136,12 +187,8 @@ public class ClientEdit extends BaseActivity {
 
             }
         });
-
-
-
-
-
-
+        //phone
+        phone.setTransformationMethod(null);
     }
 
     public void getClient()

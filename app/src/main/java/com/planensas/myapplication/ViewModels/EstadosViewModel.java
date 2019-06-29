@@ -34,8 +34,8 @@ public class EstadosViewModel extends AndroidViewModel
         repository.delete(Estado);
     }
 
-    public LiveData<Estado> getCliente(int CustumerId) {return repository.getCliente(CustumerId);}
-    public LiveData<Estado> getClienteByName(String name) {return repository.getClienteByName(name);}
+    public LiveData<Estado> getEstado(int CustumerId) {return repository.getEstado(CustumerId);}
+    public LiveData<Estado> getEstadoByName(String name) {return repository.getEstadoByName(name);}
     public LiveData<List<Estado>> getAllEstados() {
         return allEstados;
     }

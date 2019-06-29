@@ -152,15 +152,18 @@ public class ClientEdit extends BaseActivity {
                         if( clienteViewModel.getCurreCliente().getEstado()==estado.getStateId())
                         {
                             positionspiner=arrayList.indexOf(estado.getEstado());
+
                         }
+
                     }
                     Log.v("XXXXXXXXXX2","estado   "+clienteViewModel.getCurreCliente().getEstado()+" positionspiner"+positionspiner);
+                    adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1 ,arrayList);
+                    adapter.notifyDataSetChanged();
+                    spin.setAdapter(adapter);
+                    spin.setSelection(positionspiner, false);
                 }
 
-                adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1 ,arrayList);
-                adapter.notifyDataSetChanged();
-                spin.setAdapter(adapter);
-                spin.setSelection(positionspiner, false);
+
 
             }
         });

@@ -19,22 +19,21 @@ public class LogData
     private String actividad;
 
     @NonNull
-    private String Metodo;
+    private String metodo;
 
     @NonNull
     private String usuario;
 
     @NonNull
-    private String Fecha;
+    private String fecha;
 
 
-    public LogData(int logId, @NonNull String operacion, @NonNull String actividad, @NonNull String metodo, @NonNull String usuario, @NonNull String fecha) {
-        this.logId = logId;
+    public LogData(@NonNull String operacion, @NonNull String actividad, @NonNull String metodo, @NonNull String usuario, @NonNull String fecha) {
         this.operacion = operacion;
         this.actividad = actividad;
-        Metodo = metodo;
+        this.metodo = metodo;
         this.usuario = usuario;
-        Fecha = fecha;
+        this.fecha = fecha;
     }
 
     public int getLogId() {
@@ -65,11 +64,11 @@ public class LogData
 
     @NonNull
     public String getMetodo() {
-        return Metodo;
+        return metodo;
     }
 
     public void setMetodo(@NonNull String metodo) {
-        Metodo = metodo;
+        this.metodo = metodo;
     }
 
     @NonNull
@@ -83,10 +82,16 @@ public class LogData
 
     @NonNull
     public String getFecha() {
-        return Fecha;
+        return fecha;
     }
 
     public void setFecha(@NonNull String fecha) {
-        Fecha = fecha;
+        this.fecha = fecha;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return ""+this.logId+" -- "+this.operacion+" -- "+this.actividad+" -- "+this.metodo+" -- "+this.usuario+" -- "+this.fecha;
     }
 }

@@ -36,7 +36,7 @@ public class LogDataViewModel extends AndroidViewModel
         }
 
         public LiveData<LogData> getEstado(int CustumerId) {return repository.getLog(CustumerId);}
-        public LiveData<List<LogData>> getAllEstados() {
+        public LiveData<List<LogData>> getAllLogs() {
             return allEstados;
         }
 

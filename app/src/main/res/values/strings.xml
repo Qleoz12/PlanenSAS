@@ -27,13 +27,13 @@
     <string name="ErrorLastName">debe digitar un Apellido</string>
     <string name="ErrorAdress">debe digitar una Dirrecion</string>
     <string name="ErrorTelefono">debe digitar un Telefono</string>
+    <!--logs-->
+    <string name="Logs">Logs de Uso</string>
     <!--About-->
     <string name="About">Acerca del Desarrollador</string>
 
     <!--menu -->
     <string name="action_settings">algooo</string>
-
-
 
 
 </resources>

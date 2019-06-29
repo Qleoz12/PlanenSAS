@@ -52,6 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                                         .withIdentifier(1)
                                         .withName(R.string.LisClient)
                                         .withIcon(R.mipmap.ic_logo_gray_plannensas);
+        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName((R.string.Logs));
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName((R.string.About));
 
 
@@ -81,6 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .addDrawerItems(
                         item1,
                         new DividerDrawerItem(),
+                        item3,
                         item2
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -95,6 +97,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                             case 2:
                                 startActivity(new Intent(BaseActivity.this,ClientList.class));
                             break;
+                            case 3:
+                                startActivity(new Intent(BaseActivity.this,LogsActivity.class));
+                                break;
                             case 0:
                                     if(new AppVault(getBaseContext()).logout())
                                     {

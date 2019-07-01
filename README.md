@@ -26,13 +26,14 @@ la app is built based on the next nice libraries.
 ### Development
 
 
-### Todos/pendientes
+### TODOs/pendientes
 
  - update the app using NetworkBoundResource class https://proandroiddev.com/android-architecture-components-network-awareness-using-livedata-1a8d3749734d, for check the data saved by the user and sync the room DB
  - develop Testing code
  - migrate all dependecies to AndroidX
  - generate version based on kotlin
  - improve App reciclerview using Diffutil https://medium.com/@iammert/using-diffutil-in-android-recyclerview-bdca8e4fbb00
+ - foreinkeys from table states and clientTable->estado
 
 License
 ----

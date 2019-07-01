@@ -16,6 +16,7 @@ public class ClienteViewModel extends AndroidViewModel {
     private ClienteRepository repository;
     private LiveData<List<Cliente>> allClientes;
     private Cliente curreCliente;
+    private int currentState;
 
     public ClienteViewModel(@NonNull Application application) {
         super(application);
@@ -47,5 +48,13 @@ public class ClienteViewModel extends AndroidViewModel {
 
     public void setCurreCliente(Cliente curreCliente) {
         this.curreCliente = curreCliente;
+    }
+
+    public int getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(int currentState) {
+        this.currentState = currentState;
     }
 }

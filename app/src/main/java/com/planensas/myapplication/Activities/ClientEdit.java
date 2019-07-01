@@ -106,6 +106,7 @@ public class ClientEdit extends BaseActivity {
             clienteViewModel.getCurreCliente().setApellido(lastname.getText().toString());
             clienteViewModel.getCurreCliente().setDireccion(address.getText().toString());
             clienteViewModel.getCurreCliente().setTelefono(phone.getText().toString());
+            clienteViewModel.getCurreCliente().setEstado(clienteViewModel.getCurrentState());
             clienteViewModel.update(clienteViewModel.getCurreCliente());
             Intent intent = new Intent(ClientEdit.this,ClientList.class);
             startActivity(intent);
@@ -175,11 +176,9 @@ public class ClientEdit extends BaseActivity {
                 estadoViewModel.getEstadoByName(arrayList.get(position)).observe( ClientEdit.this, new Observer<Estado>() {
 
                     @Override
-                    public void onChanged(@Nullable Estado estado) {
-                        Log.v("selecionado","--1 "+ clienteViewModel.getCurreCliente().getEstado());
-                        clienteViewModel.getCurreCliente().setEstado(estado.getStateId());
-                        Log.v("selecionado","--2 "+ clienteViewModel.getCurreCliente().getEstado());
-
+                    public void onChanged(@Nullable Estado estado)
+                    {
+                        clienteViewModel.setCurrentState(estado.getStateId());
                     }
                 });
 

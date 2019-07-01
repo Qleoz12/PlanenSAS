@@ -89,9 +89,12 @@ public class LogData
         this.fecha = fecha;
     }
 
-    @NonNull
     @Override
     public String toString() {
-        return ""+this.logId+" -- "+this.operacion+" -- "+this.actividad+" -- "+this.metodo+" -- "+this.usuario+" -- "+this.fecha;
+        return    logId +"\n"+
+                "operacion='" + operacion +"\n"+
+                "actividad='" + actividad +"->"+metodo + '\'' +"\n"+
+                "usuario='" + usuario + '\'' +"\n"+
+                "fecha='" + fecha + '\'';
     }
 }

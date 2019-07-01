@@ -16,7 +16,7 @@ import com.planensas.myapplication.Entities.Estado;
 import com.planensas.myapplication.Entities.LogData;
 
 
-@Database(entities = {Cliente.class,Estado.class, LogData.class}, version = 2)
+@Database(entities = {Cliente.class,Estado.class, LogData.class}, version = 2,exportSchema = false)
 public abstract class DatabaseLocal extends RoomDatabase
 {
     private static DatabaseLocal instance;

@@ -40,7 +40,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(getLayoutId());
+        //butterknife
         ButterKnife.bind(this);
         //iconns
         Iconify.with(new FontAwesomeModule());
@@ -65,7 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                         new ProfileDrawerItem()
                                     .withName("Demo User")
                                     .withEmail(new AppVault(BaseActivity.this).getUser())
-                                    .withIcon(new IconDrawable(this, FontAwesomeIcons.fa_user))
+                                    .withIcon(new IconDrawable(this, FontAwesomeIcons.fa_user).colorRes(R.color.colorSplashText))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -95,7 +97,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                                 startActivity(new Intent(BaseActivity.this,ClientList.class));
                                 break;
                             case 2:
-                                startActivity(new Intent(BaseActivity.this,ClientList.class));
+                                startActivity(new Intent(BaseActivity.this,AboutActivity.class));
                             break;
                             case 3:
                                 startActivity(new Intent(BaseActivity.this,LogsActivity.class));

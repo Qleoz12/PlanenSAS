@@ -31,6 +31,8 @@
     <string name="Logs">Logs de Uso</string>
     <!--About-->
     <string name="About">Acerca del Desarrollador</string>
+    <string name="developer">\u0040qleoz12</string>
+    <string name="github">https://github.com/Qleoz12</string>
 
     <!--menu -->
     <string name="action_settings">algooo</string>

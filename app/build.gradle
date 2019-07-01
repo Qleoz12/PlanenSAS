@@ -77,7 +77,8 @@ dependencies {
     }
     //icons
     implementation 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2' // (v4.5)
-
+    //fresco
+    implementation 'com.facebook.fresco:fresco:1.13.0'
     //test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

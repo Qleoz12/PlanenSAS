@@ -34,16 +34,17 @@ public class AspectLogin
     public void onCreate(){}
 
     LogDataViewModel logDataViewModel;
+    ClienteViewModel clienteViewModel2;
 
     @Before("onCreate()")
     public void onCreateAdvice(JoinPoint joinPoint)
     {
 
-            Log.v("EEEEEEEEEx","ZZZZZZZZZZZZZZZZZZZZZZ ");
+
             MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
             String className = methodSignature.getDeclaringType().getSimpleName();
             String methodName = methodSignature.getName();
-            Log.v("EEEEEEEEEx",className+" **********"+methodName);
+            Log.v(tag,className+" **********"+methodName);
             try
             {   //check logim
                 Activity activity= (Activity) joinPoint.getThis();
@@ -91,7 +92,7 @@ public class AspectLogin
     {
         Log.v("ejecutando","s "+joinPoint.getClass().getName());
         //
-        String operacion="operacion:-> edicion de usaurio";
+        String operacion="operacion:-> edicion de usaurio"+"\n";
         Activity activity= (Activity) joinPoint.getThis();
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         String className = methodSignature.getDeclaringType().getSimpleName();
@@ -106,17 +107,23 @@ public class AspectLogin
         // Using DateFormat format method we can create a string
         // representation of a date with the defined format.
         String fecha =df.format(today);
-
-        logDataViewModel = ViewModelProviders.of((FragmentActivity) activity).get(LogDataViewModel.class);
-
+        clienteViewModel2= ViewModelProviders.of((FragmentActivity) activity).get(ClienteViewModel.class);
+        logDataViewModel= ViewModelProviders.of((FragmentActivity) activity).get(LogDataViewModel.class);
+        operacion=operacion;
+        operacion=operacion+clienteViewModel2.getCurreCliente().toString()+"\n\n";
+        Log.v(tag,"Antes Guardado log de "+clienteViewModel2.getCurreCliente().toString());
         try
         {
             Object result = joinPoint.proceed();
+            operacion=operacion;
+            operacion=operacion+clienteViewModel2.getCurreCliente().toString()+"\n";
             logDataViewModel.insert(new LogData(operacion,className,methodName,usuario,fecha));
-        } catch (Throwable throwable) {
+            Log.v(tag,"Guardado log de "+operacion);
+        } catch (Throwable throwable)
+        {
             throwable.printStackTrace();
         }
-        Log.v(tag,"Guardado log de "+operacion);
+        Log.v(tag,"Despues Guardado log de "+clienteViewModel2.getCurreCliente().toString());
     }
 
 }

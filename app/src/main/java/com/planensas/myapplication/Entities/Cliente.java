@@ -81,4 +81,16 @@ public class Cliente {
     public void setEstado(@NonNull int estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "customerId=" + customerId +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", estado=" + estado +
+                '}';
+    }
 }

@@ -21,6 +21,7 @@ la app is built based on the next nice libraries.
 | iconify |                 [README.md][PlGa] |
 | retrolambda |             [README.md][PlRL] |
 | aspectj |                 [README.md][PlAJ] |
+| Fresco By FACEBOOK |      [README.md][[PlFresco] |
 
 
 ### Development
@@ -51,3 +52,4 @@ WTF
    [PlGa]: <https://github.com/mikepenz/Android-Iconics>
    [PlRL]: <https://github.com/evant/gradle-retrolambda>
    [PlAJ]: <https://github.com/Archinamon/android-gradle-aspectj>
+   [PlFresco]: <https://frescolib.org/>

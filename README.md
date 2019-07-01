@@ -33,7 +33,7 @@ la app is built based on the next nice libraries.
  - migrate all dependecies to AndroidX
  - generate version based on kotlin
  - improve App reciclerview using Diffutil https://medium.com/@iammert/using-diffutil-in-android-recyclerview-bdca8e4fbb00
- - forenkeys from table states and clienttablae->states
+ - foreinkeys from table states and clientTable->estado
 
 License
 ----

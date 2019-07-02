@@ -26,7 +26,7 @@ la app is built based on the next nice libraries.
 
 ### Development issues
 -  aspectj https://github.com/Archinamon/android-gradle-aspectj/issues/80#issuecomment-441564585 (can't uses <AGP 3.0.1)
--  ButterKnife is used instead Databind because  was more easy and face databind is easy for one way and tricly for  implement two way (databind uses only androidx  make conlicts)
+-  ButterKnife is used instead of Databind because it was easier, databind is easy in a way but tricky to implement in two ways binding (the database uses only androidx conflicts)
 -  drawable library is more flexible for make over the standar implementation
 
 ### TODOs/pendientes

@@ -1,7 +1,7 @@
 # PlanenSAS App Android
 
 
-This is an app for test knowledge about android using the Archiquecture MVVM(model-View-ViewModel).
+This is an app for test knowledge about android using the Archiquecture MVVM(model-View-ViewModel), cryptography, and loggin session.
 
 # New Features!
 
@@ -21,6 +21,7 @@ la app is built based on the next nice libraries.
 | iconify |                 [README.md][PlGa] |
 | retrolambda |             [README.md][PlRL] |
 | aspectj |                 [README.md][PlAJ] |
+| Fresco By FACEBOOK |      [README.md][PlFresco] |
 
 
 ### Development
@@ -34,6 +35,7 @@ la app is built based on the next nice libraries.
  - generate version based on kotlin
  - improve App reciclerview using Diffutil https://medium.com/@iammert/using-diffutil-in-android-recyclerview-bdca8e4fbb00
  - foreinkeys from table states and clientTable->estado
+ - migrate code to androidX libraries and version on kotlin
 
 License
 ----
@@ -51,3 +53,4 @@ WTF
    [PlGa]: <https://github.com/mikepenz/Android-Iconics>
    [PlRL]: <https://github.com/evant/gradle-retrolambda>
    [PlAJ]: <https://github.com/Archinamon/android-gradle-aspectj>
+   [PlFresco]: <https://frescolib.org/>

@@ -13,19 +13,21 @@ la app is built based on the next nice libraries.
 
 | Plugin | README |
 | ------ | ------ |
-| ButterKnife |             [README.md][PlDb] |
+| ButterKnife (Binding) |             [README.md][PlDb] |
 | ViewModel and LiveData |  [README.md][PlGh] |
 | Room DB |                 [README.md][PlGd] |
 | retrofit |                [README.md][PlOd] |
 | drawable library |        [README.md][PlMe] |
-| iconify |                 [README.md][PlGa] |
+| iconify (icons)|                 [README.md][PlGa] |
 | retrolambda |             [README.md][PlRL] |
-| aspectj |                 [README.md][PlAJ] |
-| Fresco By FACEBOOK |      [README.md][PlFresco] |
+| aspectj  (AOP Paradigm)|                 [README.md][PlAJ] |
+| Fresco By FACEBOOK (Images)|      [README.md][PlFresco] |
 
 
-### Development
-
+### Development issues
+-  aspectj https://github.com/Archinamon/android-gradle-aspectj/issues/80#issuecomment-441564585 (can't uses <AGP 3.0.1)
+-  ButterKnife is used instead Databind because  was more easy and face databind is easy for one way and tricly for  implement two way (databind uses only androidx  make conlicts)
+-  drawable library is more flexible for make over the standar implementation
 
 ### TODOs/pendientes
 
@@ -35,7 +37,7 @@ la app is built based on the next nice libraries.
  - generate version based on kotlin
  - improve App reciclerview using Diffutil https://medium.com/@iammert/using-diffutil-in-android-recyclerview-bdca8e4fbb00
  - foreinkeys from table states and clientTable->estado
- - migrate code to androidX libraries and version on kotlin
+
 
 License
 ----

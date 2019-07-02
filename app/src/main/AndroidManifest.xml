@@ -15,7 +15,8 @@
         <activity android:name=".Activities.LogsActivity" />
         <activity android:name=".Activities.ClientEdit" />
         <activity android:name=".Activities.ClientList" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

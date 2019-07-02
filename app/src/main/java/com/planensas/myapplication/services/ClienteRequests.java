@@ -15,7 +15,7 @@ import retrofit2.http.Query;
 public interface ClienteRequests
 {
     @GET("customers.php")
-    Call<List<Cliente>> getClientes(@Query("userId") int userId);
+    Call<List<Cliente>> getClientes(@Query("userId") Long userId);
 
     @GET("login.php")
     Call<Login> loginApi(@Query("email") String email,@Query("pass") String password);

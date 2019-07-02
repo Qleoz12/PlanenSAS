@@ -4,7 +4,7 @@ public class Login {
 
     private Boolean succes;
     private String resultMessage;
-    private Long userId;
+    private String userId;
 
     public Boolean getSucces() {
         return succes;
@@ -22,11 +22,11 @@ public class Login {
         this.resultMessage = resultMessage;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

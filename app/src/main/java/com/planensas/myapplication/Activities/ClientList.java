@@ -1,12 +1,10 @@
 package com.planensas.myapplication.Activities;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,13 +12,11 @@ import android.widget.Toast;
 
 import com.planensas.myapplication.Entities.Cliente;
 import com.planensas.myapplication.Entities.Estado;
-import com.planensas.myapplication.MainActivity;
 import com.planensas.myapplication.R;
 import com.planensas.myapplication.ViewModels.ClienteViewModel;
 import com.planensas.myapplication.ViewModels.EstadosViewModel;
 import com.planensas.myapplication.services.ClienteRequests;
 import com.planensas.myapplication.services.DataServiceGenerator;
-import com.planensas.myapplication.utils.AppVault;
 import com.planensas.myapplication.utils.UtilData;
 
 import java.util.List;
@@ -39,8 +35,10 @@ public class ClientList extends BaseActivity{
     {
         super.onCreate(savedInstanceState);
 
+        //views
         initViews();
-
+        //data
+        getClient();
         fetch();
 
     }
@@ -101,7 +99,8 @@ public class ClientList extends BaseActivity{
         DataServiceGenerator DataServiceGenerator = new DataServiceGenerator();
         ClienteRequests service = DataServiceGenerator.createService(ClienteRequests.class);
         //get the value 3 of other request
-        Call<List<Cliente>> call = service.getClientes(3);
+
+        Call<List<Cliente>> call = service.getClientes(clienteViewModel.getLoginID());
 
         call.enqueue(new Callback<List<Cliente>>() {
             @Override
@@ -141,5 +140,15 @@ public class ClientList extends BaseActivity{
 
 
         });
+    }
+
+
+    public void getClient()
+    {
+        //get the current intent
+        Intent intent = getIntent();
+        //get the attached extras from the intent
+        //we should use the same key as we used to attach the data.
+        clienteViewModel.setLoginID(intent.getLongExtra(UtilData.LOGIN_ID,0));
     }
 }

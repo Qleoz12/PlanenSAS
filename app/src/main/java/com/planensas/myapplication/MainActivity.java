@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.planensas.myapplication.Activities.ClientEdit;
 import com.planensas.myapplication.Activities.ClientList;
 import com.planensas.myapplication.Entities.Cliente;
 import com.planensas.myapplication.Entities.Models.Login;
@@ -34,6 +35,7 @@ import com.planensas.myapplication.ViewModels.ClienteViewModel;
 import com.planensas.myapplication.services.ClienteRequests;
 import com.planensas.myapplication.services.DataServiceGenerator;
 import com.planensas.myapplication.utils.AppVault;
+import com.planensas.myapplication.utils.ErrorCenter;
 import com.planensas.myapplication.utils.UtilData;
 
 import java.util.List;
@@ -134,8 +136,10 @@ public class MainActivity extends AppCompatActivity {
                 v.savepass(pass);
 
                 Intent intent = new Intent(MainActivity.this, ClientList.class);
-                intent.putExtra(UtilData.Extra_userid,3);
+                intent.putExtra(UtilData.LOGIN_ID,3);
                 startActivity(intent);
+                //call fisnis for don go backt to this after Login
+                finish();
             }
         });
     }
@@ -202,12 +206,29 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
-                Log.v(TAG, "LOGIN [isSuccess"+response.isSuccessful()+"]");
+                Log.v(TAG, "LOGIN [isSuccess "+response.isSuccessful()+"]");
                 if (response.isSuccessful())
                 {
                     if (response != null){
                         Login loginList = response.body();
-                        Log.v(TAG, "LOGIN [isSuccess "+loginList.getSucces()+"][getUserId "+loginList.getUserId()+"]");
+                        Log.v(TAG, "LOGIN [isSuccess  "+loginList.getSucces()+"][getUserId "+loginList.getUserId()+"]");
+                        if(loginList.getSucces())
+                        {
+                            AppVault v= new AppVault(MainActivity.this);
+                            v.saveUser(email);
+                            v.savepass(password);
+
+                            Intent intent = new Intent(MainActivity.this, ClientList.class);
+                            intent.putExtra(UtilData.LOGIN_ID, Long.parseLong(loginList.getUserId()));
+                            startActivity(intent);
+                            //call fisnis for don go backt to this after Login
+                            finish();
+                        }
+                        else
+                        {
+                            new ErrorCenter(getApplication()).ShowError("Error  de login, "+loginList.getResultMessage());
+                        }
+
 
                     }
                 }

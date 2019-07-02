@@ -15,6 +15,7 @@ import java.util.List;
 public class ClienteViewModel extends AndroidViewModel {
     private ClienteRepository repository;
     private LiveData<List<Cliente>> allClientes;
+    private Long LoginID;
     private Cliente curreCliente;
     private int currentState;
 
@@ -56,5 +57,13 @@ public class ClienteViewModel extends AndroidViewModel {
 
     public void setCurrentState(int currentState) {
         this.currentState = currentState;
+    }
+
+    public Long getLoginID() {
+        return LoginID;
+    }
+
+    public void setLoginID(Long loginID) {
+        LoginID = loginID;
     }
 }
